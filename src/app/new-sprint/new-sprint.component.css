@@ -1,0 +1,50 @@
+.alignAll{
+    margin: auto;
+    width: 25%;
+    padding: 10px;
+    margin-top: 50px;
+}
+.mainCard{
+        width: 300px;
+        
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+        
+
+}
+.chooseLenght{
+    top: -4em;
+    left: 4em;
+}
+.label{
+    color: rgba(0,0,0,.5);
+    font-size: 9pt;
+    position:relative;
+}
+.descriptionTag{
+    right: -16em;
+  
+}
+.requiredTag{
+    right: -12em;
+}
+.select{
+    border: 0;
+    border-bottom: solid 1px blue;
+  
+     margin-left: 3.2em;
+}
+.middleContent{
+    
+    padding-bottom: 0.5em; 
+    margin-bottom: 0px; 
+    flex-direction: column;
+    box-sizing: border-box; 
+    display: flex;
+}
+#home{
+  
+    margin-top: 50px;
+    text-align: center;
+  }

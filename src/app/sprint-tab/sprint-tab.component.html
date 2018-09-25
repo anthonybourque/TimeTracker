@@ -1,0 +1,19 @@
+
+<div id="sprintContainer" class="containerTab" >
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+      <button id="btnNewSprint" class="nav-link active btn btn-outline-secondary" (click)="this.newSprint()">New Sprint</button>
+    </li>
+    <li class="nav-item">
+        <button id="btnPastSprint" class="nav-link btn btn-outline-secondary" (click)="this.pastSprint()" >Past Sprints</button>
+    </li>    
+  </ul>
+</div>
+
+<app-past-sprint *ngIf='componentSelector()'></app-past-sprint>
+<div class="container">
+<app-new-sprint *ngIf='!componentSelector()'></app-new-sprint>
+
+
+</div>
+<app-footer-sprint></app-footer-sprint>
