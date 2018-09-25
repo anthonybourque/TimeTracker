@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var PastTemplate = new mongoose.Schema({
+var PastSprint = new mongoose.Schema({
     name: String,
     duration: String,
     status: String,
@@ -13,5 +13,5 @@ var PastTemplate = new mongoose.Schema({
 
   
   });
-  module.exports = mongoose.model('PastTemplate', PastTemplate);
+  module.exports = mongoose.model('PastSprint', PastSprint);
 

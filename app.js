@@ -35,4 +35,6 @@ app.use(function(err, req, res, next) {
   res.sendStatus(err.status);
 });
 
+app.listen(3000);
+
 module.exports = app;

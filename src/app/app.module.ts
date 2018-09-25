@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule} from '@angular/router'
 
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 import { AboutComponent } from './about/about.component';
@@ -18,6 +19,17 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { OngoingSprintComponent } from './ongoing-sprint/ongoing-sprint.component'
 import { NgCircleProgressModule } from 'ng-circle-progress';
+
+import {
+  MatInputModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
+  MatSortModule,
+  MatTableModule,
+  MatIconModule,
+  MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule } from "@angular/material";
 
 
 
@@ -63,7 +75,18 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
         animationDuration: 150,
         percent: 100
         
-      })
+      }),FormsModule,
+      ReactiveFormsModule,
+      BrowserAnimationsModule,
+      MatInputModule,
+      MatTableModule,
+      MatPaginatorModule,
+      MatSortModule,
+      MatProgressSpinnerModule,
+      MatIconModule,
+      MatButtonModule,
+      MatCardModule,
+      MatFormFieldModule
     
 
 
