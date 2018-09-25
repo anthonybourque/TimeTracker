@@ -8,7 +8,7 @@ var apiRouter = require('./routes/sprint');
 
 var app = express();
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/sprint', { promiseLibrary: require('bluebird'), useNewUrlParser: true })
+mongoose.connect('mongodb://localhost/Sprint', { promiseLibrary: require('bluebird'), useNewUrlParser: true })
   .then(() =>  console.log('connection successful'))
   .catch((err) => console.error(err));
 

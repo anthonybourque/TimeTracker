@@ -1,9 +1,48 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
+var sprint = require('../models/sprint.js');
 
-/* GET home page. */
+/* GET ALL sprintS */
 router.get('/', function(req, res, next) {
-  res.send('Express RESTful API');
+  sprint.find(function (err, products) {
+    if (err) return next(err);
+    res.json(products);
+  });
 });
+
+/* GET SINGLE sprint BY ID */
+router.get('/:id', function(req, res, next) {
+  sprint.findById(req.params.id, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
+/* SAVE sprint */
+router.post('/', function(req, res, next) {
+  sprint.create(req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
+/* UPDATE sprint */
+router.put('/:id', function(req, res, next) {
+  sprint.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
+/* DELETE sprint */
+router.delete('/:id', function(req, res, next) {
+  sprint.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
+
 
 module.exports = router;
