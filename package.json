@@ -27,6 +27,7 @@
     "express": "^4.16.3",
     "http-errors": "^1.7.1",
     "jwt-decode": "^2.2.0",
+    "mongoose": "^5.2.17",
     "morgan": "^1.9.1",
     "ng-circle-progress": "^1.2.0",
     "rxjs": "~6.2.0",
