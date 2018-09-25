@@ -8,7 +8,7 @@ var apiRouter = require('./routes/sprint');
 
 var app = express();
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/sprint', { promiseLibrary: require('bluebird') })
+mongoose.connect('mongodb://localhost/sprint', { promiseLibrary: require('bluebird'), useNewUrlParser: true })
   .then(() =>  console.log('connection successful'))
   .catch((err) => console.error(err));
 
@@ -32,7 +32,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.send(err.status);
+  res.sendStatus(err.status);
 });
 
 module.exports = app;
