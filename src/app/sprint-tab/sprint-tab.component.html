@@ -2,26 +2,28 @@
 <div id="sprintContainer" class="containerTab" *ngIf="!data.ongoingSprint" >
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
-      <button id="btnPastSprint" class="nav-link btn btn-outline-secondary active" id="past-tab" data-toggle="tab" href="#past" [ngClass]="{ 'active':activeTab==='past'}" 
+      <button id="btnPastSprint" class="nav-link btn btn-outline-secondary active" id="past-tab" data-toggle="tab" href="#past" [ngClass]="{ 'active':data.activeTab==='past'}" 
       (click)="pastSprint('past')">Past Sprint</button>
     </li>
     <li class="nav-item">
-        <button id="btnNewSprint" class="nav-link btn btn-outline-secondary" id="new-tab" data-toggle="tab" href="#new"  [ngClass]="{ 'active':activeTab==='new'}" 
+        <button id="btnNewSprint" class="nav-link btn btn-outline-secondary" id="new-tab" data-toggle="tab" href="#new"  [ngClass]="{ 'active':data.activeTab==='new'}" 
         (click)="newSprint('new')" >New Sprints</button>
     </li>    
   </ul>
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane" id="past" [ngClass]="{ 'active':activeTab==='past'}">
-      <app-past-sprint ></app-past-sprint>
+    <div class="tab-pane" id="past" [ngClass]="{ 'active':data.activeTab==='past'}">
+      <div class="pastSprint">
+      <app-past-sprint></app-past-sprint>
     </div>
-    <div class="tab-pane" id="new"  [ngClass]="{ 'active':activeTab==='new'}">
-      <div class="container" >
+    </div>
+    <div class="tab-pane" id="new"  [ngClass]="{ 'active':data.activeTab==='new'}">
+      <div class="container" ></div>
       <app-new-sprint ></app-new-sprint>
       </div>
     </div>
    
   </div>
-</div>
+
 
 
 

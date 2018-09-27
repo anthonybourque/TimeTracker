@@ -13,8 +13,8 @@ export class DataService {
   user:string='';
   createdAt:string='';
   startedAt:string='';
-  finishAt:string='';
-
+  finishedAt:string='';
+  activeTab = "past";
 
   constructor() { }
 

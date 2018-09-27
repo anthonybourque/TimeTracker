@@ -17,3 +17,14 @@ th{
     flex: 0 0 100px !important;
     white-space: unset !important;
   }
+  .button-content{
+    background: 0 0;
+    color: inherit;
+    border: none;
+    margin: 0;
+    padding: .6em 2em;
+    outline: 0;
+    font: inherit;
+    cursor: inherit;
+
+  }

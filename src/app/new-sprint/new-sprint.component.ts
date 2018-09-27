@@ -19,7 +19,7 @@ export class NewSprintComponent implements OnInit {
   sprintRun : boolean = false;
   descriptionEmpty : boolean = true;
   userEmail:string;
-  selectedOption: string;
+  selectedOption: string = "Instant (5s)";
   sprintDuration: number = 5;
   sprintStartTime: string;
   
@@ -44,7 +44,7 @@ export class NewSprintComponent implements OnInit {
   user:string='';
   createdAt:string='';
   startedAt:string='';
-  finishAt:string='';
+  finishedAt:string='';
 
   constructor(private router: Router, private api: ApiService, private formBuilder: FormBuilder,private data:DataService) { }
   
@@ -66,7 +66,7 @@ export class NewSprintComponent implements OnInit {
           console.log(err);
         });
         
-       console.log("tu peut bientot partir");
+       
   }
   //event handler for the select element's change event
   selectChangeHandler (event: any) {
@@ -105,9 +105,9 @@ export class NewSprintComponent implements OnInit {
     this.data.ongoingSprint = true;
     
     let now = new Date();
-    
-  this.sprintDate = this.dateFormat(now, "dd-mm-yyyy");
-  this.sprintStartTime = this.dateFormat(now, "HH-MM-ss");
+    this.data.name
+    this.sprintDate = this.dateFormat(now, "yyyy-mm-dd");
+    this.sprintStartTime = this.dateFormat(now, "HH:MM:ss");
 
   
     switch(this.selectedOption) { 

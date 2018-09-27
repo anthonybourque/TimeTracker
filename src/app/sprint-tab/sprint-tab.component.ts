@@ -12,7 +12,7 @@ import { DataService } from '../data.service';
 export class SprintTabComponent implements OnInit {
 
 
-public activeTab = "past";
+
 constructor(public auth: AuthService,public router: Router, public data: DataService) {
 
   if(!auth.isAuthenticated()){
@@ -29,12 +29,12 @@ constructor(public auth: AuthService,public router: Router, public data: DataSer
   
   public pastSprint(activeTab): void {
    
-    this.activeTab = activeTab;
+    this.data.activeTab = activeTab;
     
 
   }
   public newSprint(activeTab): void {
-    this.activeTab= activeTab;
+    this.data.activeTab= activeTab;
     
     }
  

@@ -7,7 +7,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = "/api";
+const apiUrl = "http://localhost:3000/api";
 
 
 @Injectable({
@@ -37,7 +37,8 @@ export class ApiService {
     return body || { };
   }
 
-  getSprints(): Observable<any> {
+  getSprints(): Observable<any> {    
+    
     return this.http.get(apiUrl, httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));
@@ -70,6 +71,7 @@ export class ApiService {
       .pipe(
         catchError(this.handleError)
       );
+      
   }
   
 

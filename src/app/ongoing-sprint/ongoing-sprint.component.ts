@@ -39,7 +39,7 @@ export class OngoingSprintComponent implements OnInit {
 
  
   
-  finishAt:string='';
+  finishedAt:string='';
 
 
   constructor(private data:DataService,private api: ApiService,private formBuilder: FormBuilder) { }
@@ -55,7 +55,7 @@ export class OngoingSprintComponent implements OnInit {
       'user' : [null, Validators.required],
       'createdAt' : [null, Validators.required],
       'startedAt' : [null, Validators.required],
-      'finishAt' : [null, Validators.required]
+      'finishedAt' : [null, Validators.required]
     });
 
   }
@@ -64,7 +64,7 @@ export class OngoingSprintComponent implements OnInit {
   stopSprint():void{
     
     let now = new Date();
-    this.data.finishAt = this.dateFormat(now, "HH-MM-ss");
+    this.data.finishedAt = this.dateFormat(now, "HH:MM:ss");
     this.data.status = "Completed at ("+ this.sprintPercent+" %)";
     this.data.ongoingSprint = false;
 
@@ -75,13 +75,19 @@ export class OngoingSprintComponent implements OnInit {
   sprintEnd():void{    
     this.data.status = "Completed";
     let now = new Date();
-    this.data.finishAt = this.dateFormat(now, "HH-MM-ss");
+    this.data.finishedAt = this.dateFormat(now, "HH:MM:ss");
     
-    this.sprintForm.setValue({name: this.data.name ,duration:this.data.duration ,status:this.data.status ,progress:this.sprintPercent,description:this.data.description,notify:this.data.notify,user: this.data.user ,createdAt:this.data.createdAt,startedAt:this.data.startedAt,finishAt:this.data.finishAt})
-    console.log(this.sprintForm.value);
-
-
-    //this.api.postSprint(this.sprintForm);
+    this.sprintForm.patchValue({name: this.data.name ,duration:this.data.duration ,status:this.data.status ,progress:this.sprintPercent,description:this.data.description,notify:this.data.notify,user: this.data.user ,createdAt:this.data.createdAt,startedAt:this.data.startedAt,finishedAt:this.data.finishedAt})
+    
+    this.api.postSprint(this.sprintForm.value).subscribe(res => {
+      console.log(res);
+      this.data.activeTab = "past";
+      this.data.ongoingSprint = false;
+    }, err => {
+      console.log(err);
+    });
+   
+    
     
    
     
@@ -89,7 +95,7 @@ export class OngoingSprintComponent implements OnInit {
     
     
     //this.onFormSubmit(this.sprintForm.value);
-    //this.data.ongoingSprint = false;
+    
     
   }
  

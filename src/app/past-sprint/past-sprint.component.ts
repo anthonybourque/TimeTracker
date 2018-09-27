@@ -3,6 +3,7 @@ import { Window } from 'selenium-webdriver';
 import { ApiService } from '../api.service';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
+import { DataService } from '../data.service'
 
 
 
@@ -14,19 +15,13 @@ import { Observable } from 'rxjs';
 export class PastSprintComponent implements OnInit {
 
   sprint: any;
-  displayedColumns = ['lenght', 'status', 'date','start', 'finish', 'description'];
-dataSource = new SprintDataSource(this.api);
-  constructor(private api: ApiService) { }
+  displayedColumns = ['name', 'status', 'createdAt','startedAt', 'finishedAt', 'description'];
+  dataSource = new SprintDataSource(this.api);
+  constructor(private api: ApiService,public data:DataService) { }
 
 
   ngOnInit() {
-    this.api.getSprints()
-    .subscribe(res => {
-      console.log(res);
-      this.sprint = res;
-    }, err => {
-      console.log(err);
-    });
+    
     
   }
 
