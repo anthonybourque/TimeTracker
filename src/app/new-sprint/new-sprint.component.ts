@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from '../api.service';
+import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { SprintTabComponent } from '../sprint-tab/sprint-tab.component';
+import { DataService } from '../data.service';
 
 
 
@@ -13,51 +18,77 @@ export class NewSprintComponent implements OnInit {
  
   sprintRun : boolean = false;
   descriptionEmpty : boolean = true;
+  userEmail:string;
   selectedOption: string;
   sprintDuration: number = 5;
-  sprintStartTime: number;
-  sprintEndTime: number;
+  sprintStartTime: string;
+  
   sprintDate:string;
   sprintPercent:number = -1 ;
   sprintStatus: string;  
   sprintPercentSelector:boolean = false;
-  isEnd:boolean = false;
+
+  sprintDescription: string = '';
   
   dateFormat = require('dateformat');
   
 
 
+  sprintForm: FormGroup;
+  name:string='';
+  duration:string='';
+  status:string='';
+  progress:string='';  
+  description:string='';
+  notify:string='yes';
+  user:string='';
+  createdAt:string='';
+  startedAt:string='';
+  finishAt:string='';
 
-
-  constructor() { }
+  constructor(private router: Router, private api: ApiService, private formBuilder: FormBuilder,private data:DataService) { }
   
   ngOnInit() {
+  
+    this.userEmail = localStorage.getItem('email');
+
     
 
   }
   
-
+  onFormSubmit(form:NgForm) {
+    
+    this.api.postSprint(form)
+      .subscribe(res => {
+          let id = res['_id'];
+        
+        }, (err) => {
+          console.log(err);
+        });
+        
+       console.log("tu peut bientot partir");
+  }
   //event handler for the select element's change event
   selectChangeHandler (event: any) {
     //update the ui
     this.selectedOption = event.target.value;
 
   }
-  txtDescription: string = '';
-
-  //event handler for the select element's change event
-  descriptionChangeHandler (event: any) {
+   //event handler for the select element's change event
+   descriptionChangeHandler (event: any) {
     //update the ui
-    this.txtDescription = event.target.value;
-    console.log(this.txtDescription);
+    this.sprintDescription = event.target.value;
+    console.log(this.sprintDescription);
 
-    if(this.txtDescription != ""){
+    if(this.sprintDescription != ""){
       this.descriptionEmpty = false;
     }else{
       this.descriptionEmpty = true;
     }
 
   }
+
+ 
   
   newSprint(): void{
    
@@ -66,14 +97,19 @@ export class NewSprintComponent implements OnInit {
 
   }
 
+
   startSprint(): void{   
   
+   
+
+    this.data.ongoingSprint = true;
+    
     let now = new Date();
     
   this.sprintDate = this.dateFormat(now, "dd-mm-yyyy");
   this.sprintStartTime = this.dateFormat(now, "HH-MM-ss");
 
-    this.sprintStartTime =  Date.now();
+  
     switch(this.selectedOption) { 
       case "Instant (5s) ": { 
         this.sprintDuration = 5;
@@ -84,7 +120,7 @@ export class NewSprintComponent implements OnInit {
          break; 
          
       }
-      case "short (15min) ": { 
+      case "Short (15min) ": { 
         this.sprintDuration = 900;
         break; 
       }
@@ -99,68 +135,23 @@ export class NewSprintComponent implements OnInit {
       case "Very long (60min) ": { 
         this.sprintDuration = 3600;
         break; 
+        
       }       
+      
    } 
 
-  if(this.sprintRun == true){
-    this.sprintRun = false;  
-  }else{
-    this.sprintRun = true;
+   this.data.name = this.selectedOption;
+   this.data.duration = this.sprintDuration.toString();
+   this.data.description = this.sprintDescription;
+   this.data.notify = this.notify ;
+   this.data.user = this.userEmail;
+   this.data.createdAt = this.sprintDate;
+   this.data.startedAt = this.sprintStartTime;
 
-    
-  }
+ 
 
  }
-  stopSprint():void{
-    
-    let now = new Date();
-    this.sprintEndTime = this.dateFormat(now, "HH-MM-ss");
-   
 
-  }
-
- 
-  sprintEnd():void{
-
-    this.isEnd = true;
-    document.getElementById('btnNewSprint').classList.remove('active');
-    document.getElementById("btnPastSprint").classList.toggle('active');
-    document.getElementById("btnPastSprint").addEventListener('*ngIf', this.isEnd.valueOf);
-    
-    
-  }
- 
-  
-  getPercent():void{
-  
-      if(this.sprintPercent < 100){
-        if(this.sprintPercentSelector==false){
-          this.sprintPercentSelector = true;
-        }else{
-          this.sprintPercentSelector = false;
-          
-          this.sprintPercent+=1;
-        console.log(this.sprintPercent);
-
-        }
-      }else{
-
-
-      }
-    
-  
-  }
-  formatSubtitle = (percent: number) : string => {
-    if(percent >= 100){
-      return "Congratulations!"
-    }else if(percent >= 50){
-      return "Half"
-    }else if(percent > 0){
-      return "Just began"
-    }else {
-      return "Not started"
-    }
-  }
 
 
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent {
   title = 'SprintTuto';
-  constructor(public auth: AuthService) {
+  constructor(public auth: AuthService,private data:DataService) {
     auth.handleAuthentication();
   }
 }

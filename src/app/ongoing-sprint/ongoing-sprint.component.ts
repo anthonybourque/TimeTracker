@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from '../api.service';
+import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { SprintTabComponent } from '../sprint-tab/sprint-tab.component';
+import { DataService } from '../data.service';
+
 
 @Component({
   selector: 'app-ongoing-sprint',
@@ -7,9 +13,117 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OngoingSprintComponent implements OnInit {
 
-  constructor() { }
+  sprintRun : boolean = false;
+  descriptionEmpty : boolean = true;
+  userEmail:string;
+  selectedOption: string;
+  sprintDuration: number = 5;
+  sprintStartTime: number;
+  sprintEndTime: number;
+  sprintDate:string;
+  sprintPercent:number = -1 ;
+  sprintStatus: string;  
+  sprintPercentSelector:boolean = false;
+  isRun:boolean = false;
+  sprintDescription: string = '';
+  
+  dateFormat = require('dateformat');
+  
+
+
+  sprintForm: FormGroup;
+ 
+  
+  
+  progress:string='';  
+
+ 
+  
+  finishAt:string='';
+
+
+  constructor(private data:DataService,private api: ApiService,private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.sprintForm = this.formBuilder.group({
+      'name' : [null, Validators.required],
+      'duration' : [null, Validators.required],
+      'status' : [null, Validators.required],
+      'progress' : [null, Validators.required],
+      'description' : [null, Validators.required],
+      'notify' : [null, Validators.required],
+      'user' : [null, Validators.required],
+      'createdAt' : [null, Validators.required],
+      'startedAt' : [null, Validators.required],
+      'finishAt' : [null, Validators.required]
+    });
+
+  }
+
+ 
+  stopSprint():void{
+    
+    let now = new Date();
+    this.data.finishAt = this.dateFormat(now, "HH-MM-ss");
+    this.data.status = "Completed at ("+ this.sprintPercent+" %)";
+    this.data.ongoingSprint = false;
+
+
+  }
+
+ 
+  sprintEnd():void{    
+    this.data.status = "Completed";
+    let now = new Date();
+    this.data.finishAt = this.dateFormat(now, "HH-MM-ss");
+    
+    this.sprintForm.setValue({name: this.data.name ,duration:this.data.duration ,status:this.data.status ,progress:this.sprintPercent,description:this.data.description,notify:this.data.notify,user: this.data.user ,createdAt:this.data.createdAt,startedAt:this.data.startedAt,finishAt:this.data.finishAt})
+    console.log(this.sprintForm.value);
+
+
+    //this.api.postSprint(this.sprintForm);
+    
+   
+    
+    
+    
+    
+    //this.onFormSubmit(this.sprintForm.value);
+    //this.data.ongoingSprint = false;
+    
+  }
+ 
+  
+
+  getPercent():void{
+  
+      if(this.sprintPercent < 100){
+        if(this.sprintPercentSelector==false){
+          this.sprintPercentSelector = true;
+        }else{
+          this.sprintPercentSelector = false;
+          
+          this.sprintPercent+=1;
+        console.log(this.sprintPercent);
+
+        }
+      }else{
+        this.sprintEnd();
+
+      }
+    
+  
+  }
+  formatSubtitle = (percent: number) : string => {
+    if(percent >= 100){
+      return "Congratulations!"
+    }else if(percent >= 50){
+      return "Half"
+    }else if(percent > 0){
+      return "Just began"
+    }else {
+      return "Not started"
+    }
   }
 
 }

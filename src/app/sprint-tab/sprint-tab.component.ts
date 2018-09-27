@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { EventEmitter } from 'protractor';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-sprint-tab',
@@ -11,7 +12,8 @@ import { EventEmitter } from 'protractor';
 export class SprintTabComponent implements OnInit {
 
 
-constructor(public auth: AuthService,public router: Router) {
+public activeTab = "past";
+constructor(public auth: AuthService,public router: Router, public data: DataService) {
 
   if(!auth.isAuthenticated()){
   this.router.navigate(['/about']);
@@ -19,25 +21,21 @@ constructor(public auth: AuthService,public router: Router) {
 }
 
   ngOnInit() {
- 
-
+    
+    
+   
+   
   }
   
-  public componentSelector(): boolean{
-    return document.getElementById('btnPastSprint').classList.contains('active');
-  }
-
-  public pastSprint(): void {
-    document.getElementById('btnNewSprint').classList.remove('active');
-    document.getElementById("btnPastSprint").classList.toggle('active');
+  public pastSprint(activeTab): void {
+   
+    this.activeTab = activeTab;
     
 
-
   }
-  public newSprint(): void {
-    document.getElementById("btnNewSprint").classList.toggle('active');
-    document.getElementById('btnPastSprint').classList.remove('active');
+  public newSprint(activeTab): void {
+    this.activeTab= activeTab;
     
-      }
+    }
  
 }
