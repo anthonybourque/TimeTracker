@@ -24,7 +24,7 @@ export class OngoingSprintComponent implements OnInit {
   sprintPercent:number = -1 ;
   sprintStatus: string;  
   sprintPercentSelector:boolean = false;
-  isRun:boolean = false;
+  saveValidator:boolean = false;
   sprintDescription: string = '';
   
   dateFormat = require('dateformat');
@@ -66,9 +66,15 @@ export class OngoingSprintComponent implements OnInit {
     let now = new Date();
     this.data.finishedAt = this.dateFormat(now, "HH:MM:ss");
     this.data.status = "Completed at ("+ this.sprintPercent+" %)";
-    this.data.ongoingSprint = false;
-
-
+    
+    this.sprintForm.patchValue({name: this.data.name ,duration:this.data.duration ,status:this.data.status ,progress:this.sprintPercent,description:this.data.description,notify:this.data.notify,user: this.data.user ,createdAt:this.data.createdAt,startedAt:this.data.startedAt,finishedAt:this.data.finishedAt})
+    this.api.postSprint(this.sprintForm.value).subscribe(res => {
+      
+      this.data.activeTab = "past";
+      this.data.ongoingSprint = false;
+    }, err => {
+      console.log(err);
+    });
   }
 
  
@@ -80,23 +86,14 @@ export class OngoingSprintComponent implements OnInit {
     this.sprintForm.patchValue({name: this.data.name ,duration:this.data.duration ,status:this.data.status ,progress:this.sprintPercent,description:this.data.description,notify:this.data.notify,user: this.data.user ,createdAt:this.data.createdAt,startedAt:this.data.startedAt,finishedAt:this.data.finishedAt})
     
     this.api.postSprint(this.sprintForm.value).subscribe(res => {
-      console.log(res);
+      
       this.data.activeTab = "past";
       this.data.ongoingSprint = false;
     }, err => {
       console.log(err);
     });
    
-    
-    
-   
-    
-    
-    
-    
-    //this.onFormSubmit(this.sprintForm.value);
-    
-    
+        
   }
  
   
@@ -113,7 +110,9 @@ export class OngoingSprintComponent implements OnInit {
         console.log(this.sprintPercent);
 
         }
-      }else{
+      }else if(!this.saveValidator){
+        this.saveValidator = true;
+        console.log("test122");
         this.sprintEnd();
 
       }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
+import { DataService } from './data.service';
 
 
 const httpOptions = {
@@ -15,7 +16,7 @@ const apiUrl = "http://localhost:3000/api";
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private data: DataService) { }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -37,9 +38,8 @@ export class ApiService {
     return body || { };
   }
 
-  getSprints(): Observable<any> {    
-    
-    return this.http.get(apiUrl, httpOptions).pipe(
+  getSprints(): Observable<any> {       
+    return this.http.get(apiUrl+'/sprint/:'+ this.data.user, httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));
   }
@@ -65,9 +65,9 @@ export class ApiService {
       );
   }
   
-  deleteSprint(id: string): Observable<{}> {
-    const url = `${apiUrl}/${id}`;
-    return this.http.delete(url, httpOptions)
+  deleteSprint(): Observable<{}> {
+    console.log(this.data.user);    
+    return this.http.delete(apiUrl+'/sprint/:'+this.data.user, httpOptions)
       .pipe(
         catchError(this.handleError)
       );

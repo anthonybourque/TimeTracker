@@ -19,12 +19,16 @@ th{
   }
   .button-content{
     background: 0 0;
-    color: inherit;
+    color: #dc3545;
     border: none;
-    margin: 0;
     padding: .6em 2em;
-    outline: 0;
-    font: inherit;
-    cursor: inherit;
+    margin-top: 50px;
+   
+  }
+  .button-content:hover{
+    background-color: #dc3545;
+    color:white;
+    
 
   }
+ 

@@ -4,12 +4,16 @@ var mongoose = require('mongoose');
 var sprint = require('../models/sprint.js');
 
 /* GET ALL sprintS */
-router.get('/', function(req, res, next) {
-  sprint.find(function (err, products) {
+router.get('/sprint/:user', function(req, res, next) {
+  var query = { user: req.url.split(':')[1] };
+  sprint.find(query,function (err, products) {
     if (err) return next(err);
     res.json(products);
   });
 });
+ 
+
+
 
 /* GET SINGLE sprint BY ID */
 router.get('/:id', function(req, res, next) {
@@ -36,8 +40,9 @@ router.put('/:id', function(req, res, next) {
 });
 
 /* DELETE sprint */
-router.delete('/:id', function(req, res, next) {
-  sprint.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+router.delete('/sprint/:user', function(req, res, next) {
+  var query = { user: req.url.split(':')[1] };
+  sprint.deleteMany(query, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });

@@ -24,7 +24,16 @@ export class PastSprintComponent implements OnInit {
     
     
   }
+  deleteAll():void{
+    this.api.deleteSprint().subscribe(res => {
+      
+    location.reload();
+    }, (err) => {
+      console.log(err);
+    });    
 
+    
+  }
 }
 export class SprintDataSource extends DataSource<any> {
   constructor(private api: ApiService) {

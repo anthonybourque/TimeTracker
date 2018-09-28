@@ -56,7 +56,7 @@ export class NewSprintComponent implements OnInit {
 
   }
   
-  onFormSubmit(form:NgForm) {
+  /*onFormSubmit(form:NgForm) {
     
     this.api.postSprint(form)
       .subscribe(res => {
@@ -64,10 +64,10 @@ export class NewSprintComponent implements OnInit {
         
         }, (err) => {
           console.log(err);
-        });
-        
-       
+        });               
   }
+  */
+
   //event handler for the select element's change event
   selectChangeHandler (event: any) {
     //update the ui
@@ -88,16 +88,6 @@ export class NewSprintComponent implements OnInit {
 
   }
 
- 
-  
-  newSprint(): void{
-   
-   
-
-
-  }
-
-
   startSprint(): void{   
   
    
@@ -105,7 +95,7 @@ export class NewSprintComponent implements OnInit {
     this.data.ongoingSprint = true;
     
     let now = new Date();
-    this.data.name
+    
     this.sprintDate = this.dateFormat(now, "yyyy-mm-dd");
     this.sprintStartTime = this.dateFormat(now, "HH:MM:ss");
 
@@ -148,10 +138,6 @@ export class NewSprintComponent implements OnInit {
    this.data.createdAt = this.sprintDate;
    this.data.startedAt = this.sprintStartTime;
 
- 
-
- }
-
-
+  }
 
 }
