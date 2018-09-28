@@ -12,7 +12,7 @@ export class CallbackComponent implements OnInit {
 
   ngOnInit() {
       
-    console.log(localStorage.getItem('email'));
+  
 
   }
 

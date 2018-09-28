@@ -106,13 +106,11 @@ export class OngoingSprintComponent implements OnInit {
         }else{
           this.sprintPercentSelector = false;
           
-          this.sprintPercent+=1;
-        console.log(this.sprintPercent);
+          this.sprintPercent+=1;        
 
         }
       }else if(!this.saveValidator){
         this.saveValidator = true;
-        console.log("test122");
         this.sprintEnd();
 
       }

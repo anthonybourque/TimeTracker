@@ -78,7 +78,7 @@ export class NewSprintComponent implements OnInit {
    descriptionChangeHandler (event: any) {
     //update the ui
     this.sprintDescription = event.target.value;
-    console.log(this.sprintDescription);
+    
 
     if(this.sprintDescription != ""){
       this.descriptionEmpty = false;

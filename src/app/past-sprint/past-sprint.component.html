@@ -46,25 +46,22 @@
 
 
 <div class="container d-flex justify-content-around">
-  <button class="button-content " type="submit" data-toggle="modal" data-target="#ModalSprintResult">Delete all data</button>
+  <button class="button-content " type="submit" data-toggle="modalPast" data-target="#ModalSprintResult">Delete all data</button>
 </div>
  <!-- Modal Sprint Result -->
  <div class="modal fade sizeBlock" id="ModalSprintResult" tabindex="-1" role="dialog" aria-labelledby="ModalSprintResultTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-
-          <h5 class="modal-title" >Deletion is irreversible. Are you sure?</h5>
-          
-         
+          <h5 class="modal-title" >Deletion is irreversible. Are you sure?</h5>         
         </div>
         <div class="modal-body">
         <p>The only information concerning your user that we store are your past sprints. We do not store information about your user itself.</p><br>
           <p> Delete to eliminate all records.</p>
       </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-          <button class="btn btn-danger" (click)="deleteAll()" data-toggle="modal" data-target="#ModalSprintResult">Yes</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modalPast">No</button>
+          <button class="btn btn-danger" (click)="deleteAll()" data-toggle="modalPast" data-target="#ModalSprintResult">Yes</button>
         </div>
       </div>
     </div>
