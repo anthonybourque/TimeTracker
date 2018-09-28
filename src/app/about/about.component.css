@@ -1,18 +1,17 @@
-.card{
-    flex-direction: column;
-    box-sizing: border-box;
-    display: flex;
-    max-width: 100%;
-    align-content: center;
-    place-content: stretch flex-start;
-    align-items: stretch;
+.card {
+  flex-direction: column;
+  box-sizing: border-box;
+  display: flex;
+  max-width: 100%;
+  align-content: center;
+  place-content: stretch flex-start;
+  align-items: stretch;
 }
-.termsSpan{
-    text-decoration: underline;
-     cursor: pointer;
+.termsSpan {
+  text-decoration: underline;
+  cursor: pointer;
 }
-.aboutTitle{
-    margin-top: 20px;
-    font-weight: normal;
-   
+.aboutTitle {
+  margin-top: 20px;
+  font-weight: normal;
 }

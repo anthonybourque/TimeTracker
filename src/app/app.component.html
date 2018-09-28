@@ -1,42 +1,29 @@
+<nav class="navbar navbar-inverse d-flex">
+  <ul class="nav navbar-nav">
+    <li>
+      <img _ngcontent-c2="" alt="Sprints Logo" src="../../assets/img/logo.png" style="width: 105px;height:54px;">
+    </li>
+  </ul>
+  <ul class="nav navbar-nav">
+    <li>
+      <a [routerLink]="['/about']" class="nav-middle">≡Sprint</a>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav">
+    <li>
+      <a class="nav-item" *ngIf="!auth.isAuthenticated()" (click)="auth.login()" style="color:white">Login</a>
+      <a class="nav-item" *ngIf="auth.isAuthenticated()" [routerLink]="['/sprint']" style="color:white">
+        Sprints
+      </a>
+      <a class="nav-item" *ngIf="auth.isAuthenticated()" (click)="auth.logout()" style="color:white">
+        Log Out
+      </a>
+
+    </li>
+  </ul>
 
 
-<nav  class="navbar navbar-inverse d-flex">
-        <ul class="nav navbar-nav">
-          <li>
-          <img _ngcontent-c2="" alt="Sprints Logo" src="../../assets/img/logo.png" style="width: 105px;height:54px;" >
-            </li>
-            </ul>
-          <ul class="nav navbar-nav">
-              <li>
-            <a [routerLink]="['/about']" class="nav-middle">≡Sprint</a>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav">
-                <li>
-            <a  class="nav-item" *ngIf="!auth.isAuthenticated()"
-            (click)="auth.login()" style="color:white">Login</a>
-            <a
-              class="nav-item"
-              *ngIf="auth.isAuthenticated()"
-              [routerLink]="['/sprint']" style="color:white">
-                Sprints
-                </a>
-            <a
-              class="nav-item"
-              *ngIf="auth.isAuthenticated()"
-              (click)="auth.logout()"  style="color:white">
-                Log Out
-                </a>
+</nav>
+<app-ongoing-sprint *ngIf="data.ongoingSprint"></app-ongoing-sprint>
 
-            </li>
-          </ul>
-          
-          
-  </nav>
-  <app-ongoing-sprint *ngIf="data.ongoingSprint"></app-ongoing-sprint>
-       
-            <router-outlet></router-outlet>
-        
-        
-
-   
+<router-outlet></router-outlet>

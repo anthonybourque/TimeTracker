@@ -1,19 +1,14 @@
-.nav-tabs{
-margin-left: 0px;
-margin-right: 0px;
-padding: 0px;
-
+.nav-tabs {
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 0px;
 }
-.containerTab{
-    margin: 5px; 
-    margin-top: 40px;
-    
-    width: 100%;
+.containerTab {
+  margin: 5px;
+  margin-top: 40px;
+
+  width: 100%;
 }
-.pastSprint{
-margin-top: 20px;
-
-
-
-
+.pastSprint {
+  margin-top: 20px;
 }

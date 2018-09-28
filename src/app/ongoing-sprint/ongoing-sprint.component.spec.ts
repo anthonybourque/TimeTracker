@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { OngoingSprintComponent } from './ongoing-sprint.component';
+import { OngoingSprintComponent } from "./ongoing-sprint.component";
 
-describe('OngoingSprintComponent', () => {
+describe("OngoingSprintComponent", () => {
   let component: OngoingSprintComponent;
   let fixture: ComponentFixture<OngoingSprintComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OngoingSprintComponent ]
-    })
-    .compileComponents();
+      declarations: [OngoingSprintComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('OngoingSprintComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

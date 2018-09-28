@@ -1,54 +1,47 @@
+<form id="">
+  <div *ngIf="!sprintRun" class="alignAll container">
+    <div class="card card-body mainCard">
+      <h4>Start a sprint!</h4>
+      <br>
+      <div class="">
+        <select name="selectLength" (change)="selectChangeHandler($event)" class="select">
+          <option value="Instant  (5s) " class="ng-star-inserted"> Instant (5s) </option>
+          <option value="Very short (5min) " class="ng-star-inserted"> Very short (5min) </option>
+          <option value="Short (15min) " class="ng-star-inserted"> Short (15min) </option>
+          <option value="Pomodoro (25min) " class="ng-star-inserted"> Pomodoro (25min) </option>
+          <option value="Long (45min) " class="ng-star-inserted"> Long (45min) </option>
+          <option value="Very long (60min) " class="ng-star-inserted"> Very long (60min) </option>
+        </select>
 
-<form id="" >
-<div *ngIf="!sprintRun" class="alignAll container">
-  <div class="card card-body mainCard">
-  <h4>Start a sprint!</h4>
-  <br>
-    <div  class="" >
-    <select name="selectLength" (change)="selectChangeHandler($event)" class="select">
-        <option  value="Instant  (5s) " class="ng-star-inserted"> Instant (5s) </option>
-        <option  value="Very short (5min) "  class="ng-star-inserted"> Very short (5min) </option>
-        <option  value="Short (15min) " class="ng-star-inserted"> Short (15min) </option>
-        <option  value="Pomodoro (25min) " class="ng-star-inserted"> Pomodoro (25min) </option>
-        <option  value="Long (45min) " class="ng-star-inserted"> Long (45min) </option>
-        <option  value="Very long (60min) " class="ng-star-inserted"> Very long (60min) </option>
-      </select>
-     
-      <label  class="label chooseLenght">Choose length *</label>
-      
-    </div>
+        <label class="label chooseLenght">Choose length *</label>
 
-    <div class="middleContent">
-      <div class="label" >
-        <label>Description *</label>
       </div>
-      <textarea (change)="descriptionChangeHandler($event)" name="description" placeholder="What will you be doing?" rows="3" style="width:200px;" ></textarea>
-      <div  class="label requiredTag">
-        <label >Required</label
-          ></div>
+
+      <div class="middleContent">
+        <div class="label">
+          <label>Description *</label>
         </div>
-
-
-        <div>
-          <div  class="checkbox">
-            <label >
-              <input  formcontrolname="notify" checked=true type="checkbox" class="">
-            
-              <span></span> Notify when completed </label>
-           </div>
-        </div>
-
-
-          <div >
-            <button id="btnStart" [disabled]="descriptionEmpty" class="btn btn-secondary btn-lg" type="submit" (click)="startSprint()">Start</button>
-          </div>
-        
+        <textarea (change)="descriptionChangeHandler($event)" name="description" placeholder="What will you be doing?"
+          rows="3" style="width:200px;"></textarea>
+        <div class="label requiredTag">
+          <label>Required</label></div>
       </div>
+
+
+      <div>
+        <div class="checkbox">
+          <label>
+            <input formcontrolname="notify" checked=true type="checkbox" class="">
+
+            <span></span> Notify when completed </label>
+        </div>
+      </div>
+
+
+      <div>
+        <button id="btnStart" [disabled]="descriptionEmpty" class="btn btn-secondary btn-lg" type="submit" (click)="startSprint()">Start</button>
+      </div>
+
     </div>
-  </form>
-
-    
-
- 
-   
- 
+  </div>
+</form>
